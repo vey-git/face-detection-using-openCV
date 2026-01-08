@@ -24,7 +24,8 @@ grey_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
 #detect the faces, takes in 3 parameters, the image greyscaled, a scale factor (how much it is cropped by each time to see if its a face
 # and a minimum neighbour -> if it detects 4 things that look like a face but min is 5 then it wont declare it as a face.
-faces = face_cascade.detectMultiScale(grey_image, 1.1, 1)
+faces = face_cascade.detectMultiScale(grey_image, 1.2, 3)
+
 
 
 for (x, y, width, height) in faces:
