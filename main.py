@@ -14,7 +14,7 @@ parse in a xml file within the classifier with data to represent that classifier
 """
 
 #parse in a xml file within the classifier with data to represent that classifier
-face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+"""face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
 
 #test with images
 image = cv2.imread("image1.png")
@@ -34,7 +34,24 @@ for (x, y, width, height) in faces:
 
 #parse in window name (whatever you want it to be) and the image
 cv2.imshow("Faces", image)
-cv2.waitKey() #waits until we enter a key before displaying.
+cv2.waitKey() #waits until we enter a key before displaying."""
 
 
+
+
+#detecting faces from a live webcam
+
+#parse in a xml file within the classifier with data to represent that classifier
+face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+
+webcam = cv2.VideoCapture(0) #default webcam
+
+while True:
+    success, img = webcam.read()
+    grey_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    faces = face_cascade.detectMultiScale(grey_image, 1.2, 7)
+    for (x, y, width, height) in faces:
+        cv2.rectangle(img, (x, y), (x + width, y + height), (0, 0, 255), 6)
+        cv2.imshow("Faces", img)
+        cv2.waitKey()
 
